@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .addClass {
+            background: gray;
+            height: 100px;
+            width: 200px;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind以及class与style的绑定</title>
+</head>
+
+<body>
+    <div id="demo">
+        <a v-bind:href="url">我是a标签</a> <br>
+        <img v-bind:src="imgUrl" alt="picture"> <br>
+        <div v-bind:class='{addClass:isActive}'>我是对象语法绑定</div> <br>
+        <div v-bind:class='[isActive]'>我是数组绑定</div> <br>
+        <div v-bind:style='{"color":color,"fontSize":fontSize}'>我来绑定style</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#demo',
+            data: {
+                url: 'http://baidu.com',
+                imgUrl: 'https://cn.vuejs.org/images/logo.png',
+                isActive: true,
+                isActive: 'addClass',
+                color: 'red',
+                fontSize: 50 + 'px'
+            }
+        })
+    </script>
+</body>
+
+</html>
