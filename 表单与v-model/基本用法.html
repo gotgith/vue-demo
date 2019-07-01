@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单与v-model</title>
+</head>
+<body>
+    <div id="demo">
+        输入框：<input type="text" v-model='inputText'><br>
+        {{inputText}}
+        <hr>
+        复选框：<input type="checkbox" v-model='checkedValue'><br>
+        {{checkedValue}}  <hr>
+        单个复选框，选中和不选中值不同：
+        <input type="checkbox" v-model='oneCheckbox' :true-value='value3' :false-value='value4'>
+        {{oneCheckbox}}
+        <hr>
+        多个复选框：
+        狗子：<input type="checkbox" value='狗子' v-model='checks'>
+        小猫：<input type="checkbox" value='小猫' v-model='checks'>
+        驴子：<input type="checkbox" value='驴子' v-model='checks'>
+        {{checks}}  <hr>
+        单个单选框:<input type="radio" v-bind:checked='oneRadio'><hr>
+        单个单选框获得value:
+        <input type="radio" v-model='value1' v-bind:value='value2'>
+        {{value1}}<hr>
+        
+        多个单选框: <br>
+        小狗：<input type="radio" name='lala' value="小狗" v-model='manyRadio'><br>
+        小猫：<input type="radio" name='lala' value="小猫" v-model='manyRadio'><br>
+        小驴：<input type="radio" name='lala' value="小驴" v-model='manyRadio'><br>
+        {{manyRadio}}
+        <hr>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#demo",
+            data: {
+                inputText: '',
+                checkedValue: '',
+                checks: [],
+                oneRadio: false,
+                manyRadio: [],
+                value1: '',
+                value2: '1111',
+                oneCheckbox: '',
+                value3: '22222',
+                value4: '333333'
+
+            }
+        })
+    </script>
+</body>
+</html>
