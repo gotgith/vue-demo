@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子组件给父组件传递信息</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>卡里余额还有{{total}}</p>
+        <money v-on:change='handleTotal'></money>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                total: 0
+            },
+            components: {
+                'money': {
+                    template: '<div>\
+                        <button v-on:click="handleIncrease">+1</button>\
+                        <button v-on:click="handleReduce">-1</button>\
+                    </div>',
+                    data: function () {
+                        return {
+                            count: 0
+                        }
+                    },
+                    methods: {
+                        handleIncrease: function () {
+                            this.count++
+                            this.$emit('change', this.count)
+                        },
+                        handleReduce: function () {
+                            this.count--
+                            this.$emit('change', this.count)
+                        }
+                    }
+                }
+            },
+            methods: {
+                handleTotal: function (total) {
+                    this.total = total
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

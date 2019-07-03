@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子组件给父组件传递信息</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-component :a='a' :b='b' :c='c' :d='d'></my-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                a: 1321251,
+                b: "wiwi",
+                c: false,
+                d: [1,2,3]
+            },
+            components: {
+                'my-component': {
+                    props: {
+                        a: Number,
+                        b: String,
+                        c: {
+                            type: Boolean,
+                            default: true
+                        },
+                        // 如果是数组或对象，默认值必须是一个函数来返回。
+                        d: {
+                            type: Array,
+                            default: function(){
+                                return []
+                            }
+                        }
+                    },
+                    template: '<div>{{a}}---{{b}}--{{c}}--{{d}}</div>'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
