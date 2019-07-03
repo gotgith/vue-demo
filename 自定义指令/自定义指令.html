@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义指令</title>
+</head>
+<body>
+    <div id="app">
+        绑定自定义属性来获取焦点： <input type="text" v-focus> <br>
+        为绑定自定义指令：<input type="text"> <hr>
+        <div v-demo:change.a.b.c='abc' ></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.directive('focus', {
+            inserted: function(el){
+                el.focus()
+            }
+        })
+        Vue.directive('demo', {
+            bind: function(el, binding){
+                el.innerHTML =
+                'name' +'----'+ binding.name + '<br>'+
+                'value' +'----'+ binding.value + '<br>'+
+                'expression' +'----'+ binding.expression + '<br>'+
+                'argument' +'----'+ binding.arg + '<br>'+
+                'modifiers' +'----'+ JSON.stringify(binding.modifiers) + '<br>'
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                abc: '猜猜我是谁'
+            }
+        })
+    </script>
+</body>
+</html>
