@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>render函数初了解</title>
+</head>
+
+<body>
+    <div id="app">
+        <level>
+            <p>鹅鹅鹅</p>
+            <p>出项向天歌</p>
+            <p slot='header'>白毛浮绿水</p>
+            <p slot='footer'>红掌拨清波</p>
+        </level>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            components: {
+                'level': {
+                    render: function (createElement) {
+                        // this.$slots.header 返回的就是一个含有VNODE的数组
+                        var header = this.$slots.header
+                        var main = this.$slots.default
+                        var footer = this.$slots.footer
+                        return createElement('div',[
+                            createElement('header', header),
+                            createElement('main', main),
+                            createElement('footer',footer)
+                        ])
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

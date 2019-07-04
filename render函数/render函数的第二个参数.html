@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>render函数初了解</title>
+</head>
+
+<body>
+    <div id="app">
+        <level></level>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            components: {
+                'level': {
+                    render: function (createElement) {
+                        // 第二个参数，可选
+                        return createElement({
+                            template: '<div>我真好看啊</div>'
+                        }, {
+                            class: {
+                                foo: true,
+                            },
+                            style: {
+                                background: 'red',
+                                fontSize: '40px'
+                            },
+                            // 正常的Html特性
+                            attrs: {
+                                id: 'lala',
+                                src: 'www.baidu.com'
+                            },
+                            // 用来写元素的Dom属性
+                            domProps: {
+                                innerHTML: '<span style="color:blue">我是有色的</span>'
+                            }
+                        })
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>render函数初了解</title>
+</head>
+
+<body>
+    <div id="app">
+        <level></level>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            components: {
+                'level': {
+                    render: function (createElement) {
+                        return createElement('div',[
+                            // 第三个参数，创建子节点
+                            createElement('h1','我是h1的内容'),
+                            createElement('h3','我是h3的内容')
+                        ])
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

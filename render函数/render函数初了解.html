@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>render函数初了解</title>
+</head>
+
+<body>
+    <div id="app">
+        <child :level='level'>我是皮卡丘</child>
+    </div>
+    <!-- <template id="tag">
+        <div>
+            <h1 v-if="level===1">
+                <slot></slot>
+            </h1>
+            <h2 v-if="level===2">
+                <slot></slot>
+            </h2>
+            <h3 v-if="level===3">
+                <slot></slot>
+            </h3>
+        </div>
+    </template> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                level: 2
+            },
+            components: {
+                'child': {
+                    props: ['level'],
+                    // template: '#tag'
+                    render: function (createElement) {
+                        return createElement('h' + this.level,
+                        this.$slots.default)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
